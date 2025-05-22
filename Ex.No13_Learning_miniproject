@@ -1,15 +1,58 @@
 # Ex.No: 10 Learning – Use Supervised Learning  
-### DATE:                                                                            
-### REGISTER NUMBER : 
+### REGISTER NUMBER : 212222040108
 ### AIM: 
-To write a program to train the classifier for -----------------.
+To write a program to train the classifier for retrieving the most relevant document using TF-IDF and cosine similarity based on a given question.
 ###  Algorithm:
+1. Start the program and import necessary libraries.
+2. Prepare a corpus of documents and a query/question.
+3. Convert all text data into numerical format using `TfidfVectorizer`.
+4. Calculate cosine similarity between the question and each document.
+5. Identify the document with the highest similarity score.
+6. Display the most relevant document as output.
 
 ### Program:
+```
+python
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
 
+# Sample documents and question
+documents = [
+    "The quick brown fox jumps over the lazy dog.",
+    "A quick fox jumps over the lazy dog, and the brown dog sleeps.",
+    "The dog is sleeping, and the fox is quick.",
+    "This is a sample document."
+]
 
+question = "What does a quick fox do?"
+
+# Create a DataFrame for easier manipulation
+df = pd.DataFrame({'text': documents})
+
+# 1. Vectorize the documents and question using TF-IDF
+vectorizer = TfidfVectorizer()
+document_vectors = vectorizer.fit_transform(df['text'].values)
+question_vector = vectorizer.transform([question])
+
+# 2. Calculate cosine similarity between the question and each document
+similarity_scores = cosine_similarity(question_vector, document_vectors)[0]
+
+# 3. Find the most similar document
+most_similar_index = similarity_scores.argsort()[-1]
+
+# 4. Print the most similar document
+print(f"Question: {question}")
+print(f"Most similar document index: {most_similar_index}")
+print(f"Most similar document:\\n{documents[most_similar_index]}")
+```
 ### Output:
+```
+Question: What does a quick fox do?
+Most similar document index: 0
+Most similar document:
+The quick brown fox jumps over the lazy dog.
 
-
+```
 ### Result:
 Thus the system was trained successfully and the prediction was carried out.
