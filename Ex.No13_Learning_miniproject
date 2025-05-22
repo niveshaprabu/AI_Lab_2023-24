@@ -47,12 +47,10 @@ print(f"Most similar document index: {most_similar_index}")
 print(f"Most similar document:\\n{documents[most_similar_index]}")
 ```
 ### Output:
-```
 Question: What does a quick fox do?
 Most similar document index: 0
 Most similar document:
 The quick brown fox jumps over the lazy dog.
 
-```
 ### Result:
 Thus the system was trained successfully and the prediction was carried out.
